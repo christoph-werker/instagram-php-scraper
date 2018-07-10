@@ -309,7 +309,7 @@
          */
         public function getAccount($username, $prefix_url = '')
         {
-            $response = Request::get($prefix_url, Endpoints::getAccountPageLink($username), $this->generateHeaders($this->userSession));
+            $response = Request::get($prefix_url . Endpoints::getAccountPageLink($username), $this->generateHeaders($this->userSession));
             if (static::HTTP_NOT_FOUND === $response->code) {
                 throw new InstagramNotFoundException('Account with given username does not exist.');
             }
@@ -357,11 +357,14 @@
         }
 
         /**
-         * @param int    $id
+         * @param        $id
          * @param int    $count
          * @param string $maxId
+         * @param string $prefix_url
          *
-         * @return Media[]
+         * @return  array
+         *
+         * @author  Christoph Werker
          * @throws InstagramException
          */
         public function getMediasByUserId($id, $count = 12, $maxId = '', $prefix_url = '')
@@ -413,10 +416,13 @@
         }
 
         /**
-         * @param string $username
+         * @param        $username
          * @param int    $count
+         * @param string $prefix_url
          *
-         * @return Media[]
+         * @return  array
+         *
+         * @author  Christoph Werker
          * @throws InstagramException
          * @throws InstagramNotFoundException
          */
@@ -456,12 +462,12 @@
         }
 
         /**
-         * @param        $mediaId
-         * @param string $prefix_url
+         * @param $mediaId
          *
          * @return  Media
          *
          * @author  Christoph Werker
+         * @since   L5.6-0.94
          * @throws InstagramException
          * @throws InstagramNotFoundException
          */
@@ -473,18 +479,21 @@
         }
 
         /**
-         * @param string $mediaUrl
+         * @param        $mediaUrl
+         * @param string $prefix_url
          *
-         * @return Media
+         * @return  Media
+         *
+         * @author  Christoph Werker
          * @throws InstagramException
          * @throws InstagramNotFoundException
          */
-        public function getMediaByUrl($mediaUrl)
+        public function getMediaByUrl($mediaUrl, $prefix_url = '')
         {
             if (filter_var($mediaUrl, FILTER_VALIDATE_URL) === false) {
                 throw new InvalidArgumentException('Malformed media url');
             }
-            $response = Request::get(rtrim($mediaUrl, '/') . '/?__a=1', $this->generateHeaders($this->userSession));
+            $response = Request::get($prefix_url . rtrim($mediaUrl, '/') . '/?__a=1', $this->generateHeaders($this->userSession));
             // use a raw constant in the code is not a good idea!!
             //if ($response->code === 404) {
             if (static::HTTP_NOT_FOUND === $response->code) {
@@ -785,7 +794,7 @@
          */
         public function getUsernameById($id, $prefix_url = '')
         {
-            $response = Request::get($prefix_url, Endpoints::getAccountJsonPrivateInfoLinkByAccountId($id), $this->generateHeaders($this->userSession));
+            $response = Request::get($prefix_url . Endpoints::getAccountJsonPrivateInfoLinkByAccountId($id), $this->generateHeaders($this->userSession));
 
             if (static::HTTP_NOT_FOUND === $response->code) {
                 throw new InstagramNotFoundException('Account with given username does not exist.');
@@ -1201,7 +1210,7 @@
         {
             $variables = ['precomposed_overlay' => false, 'reel_ids' => []];
             if (empty($reel_ids)) {
-                $response = Request::get($prefix_url, Endpoints::getUserStoriesLink(),
+                $response = Request::get($prefix_url . Endpoints::getUserStoriesLink(),
                   $this->generateHeaders($this->userSession));
 
                 if ($response->code !== 200) {
