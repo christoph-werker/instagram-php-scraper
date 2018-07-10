@@ -187,9 +187,9 @@
          * @throws InstagramException
          * @throws InstagramNotFoundException
          */
-        public function searchAccountsByUsername($username)
+        public function searchAccountsByUsername($username, $prefix_url = '')
         {
-            $response = Request::get(Endpoints::getGeneralSearchJsonLink($username), $this->generateHeaders($this->userSession));
+            $response = Request::get($prefix_url . Endpoints::getGeneralSearchJsonLink($username), $this->generateHeaders($this->userSession));
             if (static::HTTP_NOT_FOUND === $response->code) {
                 throw new InstagramNotFoundException('Account with given username does not exist.');
             }
