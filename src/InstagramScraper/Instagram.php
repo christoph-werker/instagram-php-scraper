@@ -367,6 +367,7 @@
          * @author  Christoph Werker
          * @throws InstagramException
          */
+        
         public function getMediasByUserId($id, $count = 12, $maxId = '', $prefix_url = '')
         {
             $index           = 0;
