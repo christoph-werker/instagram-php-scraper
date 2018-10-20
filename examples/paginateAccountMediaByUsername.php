@@ -2,7 +2,7 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 
-// getPaginateMedias() works with and without authentication
+// getPaginateMedias() work with and without authorization
 $instagram = \InstagramScraper\Instagram::withCredentials('username', 'password', '/path/to/cache/folder');
 $instagram->login();
 

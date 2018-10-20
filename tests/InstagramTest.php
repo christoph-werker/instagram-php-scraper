@@ -19,7 +19,7 @@ class InstagramTest extends TestCase
             'path' => $sessionFolder
         ]);
         $instanceCache = CacheManager::getInstance('files');
-        self::$instagram = Instagram::withCredentials('raiym', 'redacted', $instanceCache);
+        self::$instagram = Instagram::withCredentials('raiym', 'youneverknow', $instanceCache);
         self::$instagram->login();
 
     }
@@ -45,7 +45,7 @@ class InstagramTest extends TestCase
     public function testGetAccountByIdWithInvalidNumericId()
     {
         // PHP_INT_MAX is far larger than the greatest id so far and thus does not represent a valid account.
-        $this->expectExceptionMessage('Failed to fetch account with given id');
+        $this->expectException(\InstagramScraper\Exception\InstagramException::class);
         self::$instagram->getAccountById(PHP_INT_MAX);
     }
 
@@ -125,7 +125,7 @@ class InstagramTest extends TestCase
         //TODO: check why returns less comments
         $this->assertEquals(33, sizeof($comments));
     }
-
+    
     /**
      * @group getUsernameById
      */
@@ -134,7 +134,7 @@ class InstagramTest extends TestCase
         $username = self::$instagram->getUsernameById(3);
         $this->assertEquals('kevin', $username);
     }
-
+    
     /**
      * @group getMediasByIserId
      */

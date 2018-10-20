@@ -8,7 +8,7 @@ $medias = $instagram->getMediasByLocationId('1', 20);
 $media = $medias[0];
 echo "Media info:\n";
 echo "Id: {$media->getId()}\n";
-echo "Shortcode: {$media->getShortCode()}\n";
+echo "Shotrcode: {$media->getShortCode()}\n";
 echo "Created at: {$media->getCreatedTime()}\n";
 echo "Caption: {$media->getCaption()}\n";
 echo "Number of comments: {$media->getCommentsCount()}";

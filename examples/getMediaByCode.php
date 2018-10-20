@@ -2,7 +2,7 @@
 // If account is public you can query Instagram without auth
 $instagram = new \InstagramScraper\Instagram();
 
-// If account is private and you subscribed to it, first login
+// If account is private and you subscribed to it firstly login
 $instagram = \InstagramScraper\Instagram::withCredentials('username', 'password', '/path/to/cache/folder');
 $instagram->login();
 
@@ -10,7 +10,7 @@ $media = $instagram->getMediaByCode('BHaRdodBouH');
 
 echo "Media info:\n";
 echo "Id: {$media->getId()}\n";
-echo "Shortcode: {$media->getShortCode()}\n";
+echo "Shotrcode: {$media->getShortCode()}\n";
 echo "Created at: {$media->getCreatedTime()}\n";
 echo "Caption: {$media->getCaption()}\n";
 echo "Number of comments: {$media->getCommentsCount()}";
