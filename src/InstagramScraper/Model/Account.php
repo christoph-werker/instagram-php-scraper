@@ -446,104 +446,104 @@
             return $this->connectedFbPage;
         }
 
-        /**
-         * @param $value
-         * @param $prop
-         * @param $array
-         */
-        protected function initPropertiesCustom($value, $prop, $array)
-        {
-            switch ($prop) {
-                case 'id':
-                case 'pk':
-                    $this->id = $value;
-                    break;
-                case 'username':
-                    $this->username = $value;
-                    break;
-                case 'full_name':
-                    $this->fullName = $value;
-                    break;
-                case 'profile_pic_url':
-                    $this->profilePicUrl = $value;
-                    break;
-                case 'profile_pic_url_hd':
-                    $this->profilePicUrlHd = $value;
-                    break;
-                case 'biography':
-                    $this->biography = $value;
-                    break;
-                case 'external_url':
-                    $this->externalUrl = $value;
-                    break;
-                case 'follower_count':
-                    $this->followedByCount = $value;
-                    break;
-                case 'edge_follow':
-                    $this->followsCount = !empty($array[$prop]['count']) ? (int)$array[$prop]['count'] : 0;
-                    break;
-                case 'edge_followed_by':
-                    $this->followedByCount = !empty($array[$prop]['count']) ? (int)$array[$prop]['count'] : 0;
-                    break;
-                case 'edge_owner_to_timeline_media':
-                    $this->initMedia($array[$prop]);
-                    break;
-                case 'is_private':
-                    $this->isPrivate = (bool)$value;
-                    break;
-                case 'is_verified':
-                    $this->isVerified = (bool)$value;
-                    break;
-                case 'blocked_by_viewer':
-                    $this->blockedByViewer = (bool)$value;
-                    break;
-                case 'country_block':
-                    $this->countryBlock = (bool)$value;
-                    break;
-                case 'followed_by_viewer':
-                    $this->followedByViewer = $value;
-                    break;
-                case 'follows_viewer':
-                    $this->followsViewer = $value;
-                    break;
-                case 'has_channel':
-                    $this->hasChannel = (bool)$value;
-                    break;
-                case 'has_blocked_viewer':
-                    $this->hasBlockedViewer = (bool)$value;
-                    break;
-                case 'highlight_reel_count':
-                    $this->highlightReelCount = (int)$value;
-                    break;
-                case 'has_requested_viewer':
-                    $this->hasRequestedViewer = (bool)$value;
-                    break;
-                case 'is_business_account':
-                    $this->isBusinessAccount = (bool)$value;
-                    break;
-                case 'is_joined_recently':
-                    $this->isJoinedRecently = (bool)$value;
-                    break;
-                case 'business_category_name':
-                    $this->businessCategoryName = $value;
-                    break;
-                case 'business_email':
-                    $this->businessEmail = $value;
-                    break;
-                case 'business_phone_number':
-                    $this->businessPhoneNumber = $value;
-                    break;
-                case 'business_address_json':
-                    $this->businessAddressJson = $value;
-                    break;
-                case 'requested_by_viewer':
-                    $this->requestedByViewer = (bool)$value;
-                    break;
-                case 'connected_fb_page':
-                    $this->connectedFbPage = $value;
-                    break;
-            }
+    /**
+     * @param $value
+     * @param $prop
+     * @param $array
+     */
+    protected function initPropertiesCustom($value, $prop, $array)
+    {
+        switch ($prop) {
+            case 'id':
+            case 'pk':
+                $this->id = $value;
+                break;
+            case 'username':
+                $this->username = $value;
+                break;
+            case 'full_name':
+                $this->fullName = $value;
+                break;
+            case 'profile_pic_url':
+                $this->profilePicUrl = $value;
+                break;
+            case 'profile_pic_url_hd':
+                $this->profilePicUrlHd = $value;
+                break;
+            case 'biography':
+                $this->biography = $value;
+                break;
+            case 'external_url':
+                $this->externalUrl = $value;
+                break;
+            case 'edge_follow':
+                $this->followsCount = !empty($array[$prop]['count']) ? (int)$array[$prop]['count'] : 0;
+                break;
+            case 'edge_followed_by':
+                $this->followedByCount = !empty($array[$prop]['count']) ? (int)$array[$prop]['count'] : 0;
+                break;
+            case 'follower_count':
+                $this->followedByCount = empty($array['edge_followed_by']['count']) ? $value : 0;
+                break;
+            case 'edge_owner_to_timeline_media':
+                $this->initMedia($array[$prop]);
+                break;
+            case 'is_private':
+                $this->isPrivate = (bool)$value;
+                break;
+            case 'is_verified':
+                $this->isVerified = (bool)$value;
+                break;
+            case 'blocked_by_viewer':
+                $this->blockedByViewer = (bool)$value;
+                break;
+            case 'country_block':
+                $this->countryBlock = (bool)$value;
+                break;
+            case 'followed_by_viewer':
+                $this->followedByViewer = $value;
+                break;
+            case 'follows_viewer':
+                $this->followsViewer = $value;
+                break;
+            case 'has_channel':
+                $this->hasChannel = (bool)$value;
+                break;
+            case 'has_blocked_viewer':
+                $this->hasBlockedViewer = (bool)$value;
+                break;
+            case 'highlight_reel_count':
+                $this->highlightReelCount = (int)$value;
+                break;
+            case 'has_requested_viewer':
+                $this->hasRequestedViewer = (bool)$value;
+                break;
+            case 'is_business_account':
+                $this->isBusinessAccount = (bool)$value;
+                break;
+            case 'is_joined_recently':
+                $this->isJoinedRecently = (bool)$value;
+                break;
+            case 'business_category_name':
+                $this->businessCategoryName = $value;
+                break;
+            case 'business_email':
+                $this->businessEmail = $value;
+                break;
+            case 'business_phone_number':
+                $this->businessPhoneNumber = $value;
+                break;
+            case 'business_address_json':
+                $this->businessAddressJson = $value;
+                break;
+            case 'requested_by_viewer':
+                $this->requestedByViewer = (bool)$value;
+                break;
+            case 'connected_fb_page':
+                $this->connectedFbPage = $value;
+                break;
         }
+    }
 
         /**
          * @param array $array
