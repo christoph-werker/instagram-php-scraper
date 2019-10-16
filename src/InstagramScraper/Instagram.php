@@ -890,17 +890,18 @@
 
         /**
          * @param string $id
+         * @param string|null $prefix_url
          *
          * @return Account
          * @throws InstagramException
          * @throws InvalidArgumentException
          * @throws InstagramNotFoundException
          */
-        public function getAccountById($id)
+        public function getAccountById($id, $prefix_url = '')
         {
-            $username = $this->getUsernameById($id);
+            $username = $this->getUsernameById($id, $prefix_url);
 
-            return $this->getAccount($username);
+            return $this->getAccount($username, $prefix_url);
         }
 
         /**
